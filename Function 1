@@ -1,0 +1,64 @@
+# Method that will return '0' through '6', representing Monday through Saturday 
+from datetime import datetime
+currentDay = datetime.today().weekday();
+
+# Method that returns the name of the weekday, ex 'Saturday'
+from datetime import date
+import calendar
+curr_date = date.today()
+
+# Array that will hold the values for each of the dates 
+daysofTheWeek = [None,None,None,None,None,None,None]
+
+#Index: 0 - Monday,  1 - Tuesday, 
+# 2 - Wednesday, 3 - Thursday,
+# 4 - Friday, 5 - Saturday, 6 - Sunday
+
+
+
+class Update: #Class used to update data for day of week 
+  def __init__(self, tWorkouts, tMinutes):
+    self.tWorkouts = tWorkouts
+    self.tMinutes = tMinutes
+    self.dictionary = {
+        "Date": calendar.day_name[curr_date.weekday()],
+        "workouts": self.tWorkouts,
+        "minutes": self.tMinutes
+    }
+
+
+
+# Asking user if they worked out today
+workoutStatus = input("Did you already workout today? Enter 'Yes' or 'No': ")
+
+
+# If user entered yes then run code below 
+
+if workoutStatus.upper() == "YES":
+  dailyWorkouts = int(input("How many times did you workout today? ")) # Create an array with a size equal to number entered by user 
+  totalWorkouts = []
+
+
+  # Ask user to enter the length (in minutes) of each workout. Entered value will be placed corresponding index of workout in array,  
+  for x in range(dailyWorkouts):
+        totalWorkouts.append(input("How long was workout '%d' (in minutes):" % (x+1)))  
+
+  # Count the total minutes entered by user
+  totalMinutes = 0
+  for x in range(dailyWorkouts):
+        totalMinutes += int(totalWorkouts[x])
+
+
+  #Update the class with the entered user input - Send total workouts and total minutes--------------------
+  daysOfTheWeek[currentDay] = Update(dailyWorkouts, totalMinutes)
+
+
+#---Remeber to take out ************
+  print("\n")
+  print(daysOfTheWeek[currentDay].dictionary)
+
+
+
+elif  workoutStatus.upper() == "NO":
+  #--------
+   print("Would you like to record ")
